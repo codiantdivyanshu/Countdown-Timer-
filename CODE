@@ -1,0 +1,67 @@
+# countdown_timer_full.py
+
+import time
+import os
+import sys
+
+# Optional: Play sound (only works on Windows)
+def play_sound():
+    try:
+        if sys.platform == 'win32':
+            import winsound
+            frequency = 1000  # Hertz
+            duration = 1000   # milliseconds
+            winsound.Beep(frequency, duration)
+        else:
+            print('\a')  # Terminal beep (works on Unix-based systems)
+    except:
+        print("Sound not supported on this system.")
+
+# Clear the terminal screen for a clean display
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+# Format seconds into MM:SS
+def format_time(seconds):
+    minutes, seconds = divmod(seconds, 60)
+    return f"{minutes:02d}:{seconds:02d}"
+
+# Countdown logic
+def countdown(total_seconds):
+    try:
+        while total_seconds >= 0:
+            clear_screen()
+            print("=== Python Countdown Timer ===\n")
+            print("Time Remaining:", format_time(total_seconds))
+            time.sleep(1)
+            total_seconds -= 1
+
+        print("\n Time's up!")
+        play_sound()
+
+    except KeyboardInterrupt:
+        print("\n Countdown cancelled by user.")
+
+# Get user input and start timer
+def main():
+    clear_screen()
+    print("=== Countdown Timer in Python ===")
+
+    try:
+        minutes = int(input("Enter minutes: "))
+        seconds = int(input("Enter seconds: "))
+        total_seconds = minutes * 60 + seconds
+
+        if total_seconds <= 0:
+            print("Time must be greater than 0 seconds.")
+            return
+
+        print(f"\n Starting countdown for {format_time(total_seconds)}...\n")
+        time.sleep(1)
+        countdown(total_seconds)
+
+    except ValueError:
+        print(" Please enter valid numbers for minutes and seconds.")
+
+if __name__ == "__main__":
+    main()
