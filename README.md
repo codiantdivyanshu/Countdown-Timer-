@@ -40,3 +40,12 @@ Countdown started...
 0
 ⏰ Time's up!
 
+4. Proeject Structure
+
+countdown-timer/
+├── code                   # 🎯 Main Python script
+├── README.md              # 📄 Project overview and instructions
+├── .gitignore             # 🚫 Files/folders to ignore in Git
+└── LICENSE                # 📜 Project license (e.g., MIT)
+
+
